@@ -134,56 +134,59 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onVerticalDragUpdate: onVerticalDragUpdate,
-              onHorizontalDragUpdate: onHorizontalDragUpdate,
-              child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: numberOfSquares,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 20),
-                  itemBuilder: (context, index) {
-                    if (snakePosition.contains(index)) {
-                      return Center(
-                        child: ClipRRectContainer(Colors.white),
-                      );
-                    }
-                    if (food == index) {
-                      return ClipRRectContainer(Colors.green);
-                    } else {
-                      return ClipRRectContainer(Colors.grey[900]);
-                    }
-                  }),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onVerticalDragUpdate: onVerticalDragUpdate,
+                onHorizontalDragUpdate: onHorizontalDragUpdate,
+                child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: numberOfSquares,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 20),
+                    itemBuilder: (context, index) {
+                      if (snakePosition.contains(index)) {
+                        return Center(
+                          child: ClipRRectContainer(Colors.white),
+                        );
+                      }
+                      if (food == index) {
+                        return ClipRRectContainer(Colors.green);
+                      } else {
+                        return ClipRRectContainer(Colors.grey[900]);
+                      }
+                    }),
+              ),
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: startGame,
-                  child: const Text(
-                    'Start Game',
-                    style: TextStyle(color: Colors.red, fontSize: 20),
+            Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: startGame,
+                    child: const Text(
+                      'Start Game',
+                      style: TextStyle(color: Colors.red, fontSize: 20),
+                    ),
                   ),
-                ),
-                Text(
-                  'Score: $score',
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                Text(
-                  'Best Score: $bestScore',
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
-                )
-              ],
+                  Text(
+                    'Score: $score',
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  Text(
+                    'Best Score: $bestScore',
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
